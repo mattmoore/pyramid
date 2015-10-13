@@ -29,11 +29,14 @@ int main(int argc, char* args[]) {
 				printf("Host connected: %x %d\n", SDLNet_Read32(&remoteIP->host), SDLNet_Read16(&remoteIP->port));
 				quit2 = 0;
 				while (!quit2) {
+					// Get buffer length
 					char bufferLengthMsg[512];
 					SDLNet_TCP_Recv(client, bufferLengthMsg, 512);
 					int bufferLength = atoi(bufferLengthMsg);
-					char buffer[bufferLength - 1];
+					// Get message
+					char buffer[bufferLength];
 					SDLNet_TCP_Recv(client, buffer, bufferLength);
+					// Print stats
 					printf("Message length: %s\n", bufferLengthMsg);
 					printf("Message content: %s\n", buffer);
 					quit2 = 1;

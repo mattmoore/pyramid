@@ -11,6 +11,7 @@ int main(int argc, char* argv[]) {
 
 	if (argc > 1) {
 		command = argv[1];
+		command += '\0';
 	}
 
 	if (SDLNet_Init() < 0) {
