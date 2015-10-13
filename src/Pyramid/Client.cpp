@@ -25,11 +25,11 @@ namespace Pyramid {
       exit(EXIT_FAILURE);
     }
     
-    int length = command.length();
+    int length = this->command.length();
     std::string length_str = std::to_string(length);
 
     SDLNet_TCP_Send(server, length_str.c_str(), 512);
-    SDLNet_TCP_Send(server, command.c_str(), length);
+    SDLNet_TCP_Send(server, this->command.c_str(), length);
 
     SDLNet_TCP_Close(server);
     SDLNet_Quit();

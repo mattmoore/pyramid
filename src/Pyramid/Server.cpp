@@ -29,14 +29,14 @@ namespace Pyramid {
           quit2 = 0;
           while (!quit2) {
             // Get buffer length
-            char bufferLengthMsg[512];
-            SDLNet_TCP_Recv(client, bufferLengthMsg, 512);
-            int bufferLength = atoi(bufferLengthMsg);
+            char buffer_length_msg[512];
+            SDLNet_TCP_Recv(client, buffer_length_msg, 512);
+            int buffer_length = atoi(buffer_length_msg);
             // Get message
-            char buffer[bufferLength];
-            SDLNet_TCP_Recv(client, buffer, bufferLength);
+            char buffer[buffer_length];
+            SDLNet_TCP_Recv(client, buffer, buffer_length);
             // Print stats
-            printf("Message length: %s\n", bufferLengthMsg);
+            printf("Message length: %s\n", buffer_length_msg);
             printf("Message content: %s\n", buffer);
             quit2 = 1;
           }
