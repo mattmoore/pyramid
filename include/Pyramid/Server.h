@@ -5,12 +5,13 @@
 namespace Pyramid {
 	class Server {
 	private:
+		int port;
 	  TCPsocket server, client;
 	  IPaddress ip, *remoteIP;		
 	  int quit, quit2;
 
 	public:
-		Server();
+		Server(int);
 		~Server();
 		void Run();
 	};

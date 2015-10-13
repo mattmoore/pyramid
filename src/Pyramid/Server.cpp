@@ -1,8 +1,8 @@
 #include "Pyramid/Server.h"
 
 namespace Pyramid {
-	Server::Server() {
-
+	Server::Server(int port) {
+		this->port = port;
 	}
 
 	void Server::Run() {
@@ -11,7 +11,7 @@ namespace Pyramid {
 			exit(EXIT_FAILURE);
 		}
 
-		if (SDLNet_ResolveHost(&ip, NULL, 2000) < 0) {
+		if (SDLNet_ResolveHost(&ip, NULL, this->port) < 0) {
 			fprintf(stderr, "SDLNet_ResolveHost: %s\n", SDLNet_GetError());
 			exit(EXIT_FAILURE);
 		}
