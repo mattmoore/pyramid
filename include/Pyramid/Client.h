@@ -5,12 +5,14 @@
 namespace Pyramid {
 	class Client {
 	private:
+		std::string address;
+		int port;
 		TCPsocket server;
-		IPaddress ip;		
+		IPaddress ip;
 		std::string command;
 	public:
-		Client();
-		void Send(std::string message);
+		Client(std::string, int);
+		void Send(std::string);
 		~Client();
 	};
 }

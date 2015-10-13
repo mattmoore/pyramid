@@ -1,8 +1,9 @@
 #include "Pyramid/Client.h"
 
 namespace Pyramid {
-	Client::Client() {
-
+	Client::Client(std::string address, int port) {
+		this->address = address;
+		this->port = port;
 	}
 
 	void Client::Send(std::string message) {
@@ -14,7 +15,7 @@ namespace Pyramid {
 			exit(EXIT_FAILURE);
 		}
 
-		if (SDLNet_ResolveHost(&ip, "127.0.0.1", 2000) < 0) {
+		if (SDLNet_ResolveHost(&ip, this->address.c_str(), this->port) < 0) {
 			fprintf(stderr, "SDLNet_ResolveHost: %s\n", SDLNet_GetError());
 			exit(EXIT_FAILURE);
 		}
