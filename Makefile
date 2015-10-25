@@ -1,10 +1,13 @@
+CC=clang++
+SDL_FLAGS=`sdl2-config --cflags --libs` -lSDL2_net -lSDL2_image
+
 client:
 	if [ ! -e "bin" ]; then mkdir bin; fi;
-	clang++ -Wall -std=c++14 -pthread -lSDL2 -lSDL2_image -lSDL2_net -I include Pyramid.cpp src/Pyramid/Client.cpp -o bin/pyramid
+	$(CC) -Wall -std=c++14 -pthread $(SDL_FLAGS) -Iinclude Pyramid.cpp src/Pyramid/Client.cpp src/Pyramid/Renderer.cpp -o bin/pyramid
 
 server:
 	if [ ! -e "bin" ]; then mkdir bin; fi;
-	clang++ -Wall -std=c++14 -pthread -lSDL2 -lSDL2_image -lSDL2_net -I include PyramidServer.cpp src/Pyramid/Server.cpp -o bin/pyramid-server
+	$(CC) -Wall -std=c++14 -pthread $(SDL_FLAGS) -Iinclude PyramidServer.cpp src/Pyramid/Server.cpp -o bin/pyramid-server
 
 clean:
 	if [ -e "bin" ]; then rm -rf bin; fi;
