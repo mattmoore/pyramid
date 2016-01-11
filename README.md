@@ -5,3 +5,10 @@ Pyramid is a client/server data visualization tool for rendering data points ove
 Rendering takes place on the client side via OpenGL. Clients with appropriate permissions will be able to update the data stream live.
 
 Eventually, a WebGL renderer that can be embedded in web pages would be nice to have.
+
+## Build Instructions:
+
+1. Install SDL2/Net and SDL2/Image on your platform of choice.
+1. Run "make clean" to ensure clean build.
+1. Run "make server" to build server.
+1. Run "make client" to build client.
