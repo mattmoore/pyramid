@@ -4,28 +4,23 @@ import (
 	"bufio"
 	"fmt"
 	"net"
+	"os"
 	"time"
-	"strings"
 )
 
 func handleConnection(conn net.Conn) {
-	reader := bufio.NewReader(conn)
-	for {
+	scanner := bufio.NewScanner(bufio.NewReader(conn))
+	for scanner.Scan() {
 		messageTime := time.Now()
-		message, err := reader.ReadString('\n')
-		if err != nil {
-			break
-		} else {
-			message = strings.Replace(message, "\n", "", -1)
-			fmt.Println(messageTime, ": ", message)
-			conn.Write([]byte(fmt.Sprintf("received\n")))
-		}
+		message := scanner.Text()
+		fmt.Println(messageTime, ": ", message)
+		conn.Write([]byte(fmt.Sprintf("received\n")))
 	}
 }
 
 func main() {
-	listen, _ := net.Listen("tcp", ":8080")
-
+	listen, _ := net.Listen("tcp", fmt.Sprintf(":%s", os.Args[1]))
+	fmt.Println(fmt.Sprintf("Pyramid server listening on port %s", os.Args[1]))
 	for {
 		conn, _ := listen.Accept()
 		go handleConnection(conn)
